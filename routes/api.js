@@ -9,7 +9,8 @@ apiRouter.get('', (req, res) => {
 })
 
 //===============User api===================
-apiRouter.get('/user', user.getUser);
+apiRouter.post('/register', user.registerUser);
+apiRouter.get('/login', user.loginUser);
 
 //===========Password Generator API=========
 apiRouter.post('/generatePassword', passwordGenerator.generatePassword);
