@@ -11,7 +11,7 @@ app.use(apiRouter)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-var mongoUrl = 'mongodb://127.0.0.1/ecommerceDB'
+var mongoUrl = 'mongodb://127.0.0.1/passwordBook'
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
