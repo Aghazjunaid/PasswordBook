@@ -15,6 +15,9 @@ apiRouter.get('/login', user.loginUser);
 
 //===========Password Book API==============
 apiRouter.post('/password', passwordBook.addPassword);
+apiRouter.get('/password', passwordBook.getPassword);
+//apiRouter.update('/password', passwordBook.addPassword);
+//apiRouter.delete('/password', passwordBook.addPassword);
 
 
 //===========Password Generator API=========
