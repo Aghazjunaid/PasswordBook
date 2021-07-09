@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 var PasswordBookSchema = new Schema({
+    user: {type: Schema.Types.ObjectId, ref:"user"},
     accountType: {type:String, required:true},
     accountName: {type: String, required: true},
     accountEmail: {type: String},

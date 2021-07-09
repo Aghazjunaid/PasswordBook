@@ -3,6 +3,7 @@ apiRouter = express.Router();
 
 user = require('./user')();
 passwordGenerator = require('./generatePassword')();
+passwordBook = require('./passwordBook')();
 
 apiRouter.get('', (req, res) => {
     res.status(200).send("Node api demo")
@@ -11,6 +12,10 @@ apiRouter.get('', (req, res) => {
 //===============User api===================
 apiRouter.post('/register', user.registerUser);
 apiRouter.get('/login', user.loginUser);
+
+//===========Password Book API==============
+apiRouter.post('/password', passwordBook.addPassword);
+
 
 //===========Password Generator API=========
 apiRouter.post('/generatePassword', passwordGenerator.generatePassword);
