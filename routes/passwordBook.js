@@ -21,9 +21,26 @@ module.exports = () => {
         res.json(return_response);
     }
 
+    //====================Get Password===================================================
+    async function getPassword(req,res){
+        var return_response = { "status": null, "message": null, "data": {} } 
+        try {
+            const doc = await PasswordBook.find({});
+            return_response.status = 200;
+            return_response.message = "Success";
+            return_response.data = doc;
+        } catch (error) {
+            return_response.status = 400;
+            return_response.message = String(error);
+        }
+        res.json(return_response);
+    }
+
+
 
     return {
-        addPassword
+        addPassword,
+        getPassword
     }
 
 }
