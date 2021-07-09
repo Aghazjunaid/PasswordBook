@@ -51,12 +51,30 @@ module.exports = () => {
        res.json(return_response);
    }
 
+   //==============Update Password ======================================================
+   async function updatePassword(req,res){
+    return_response = { "status": null, "message": null, "data": {} } 
+   try {
+        var opt = req.body;
+        const doc = await PasswordBook.findOneAndUpdate({_id:req.params.id}, opt, {new:true})
+        return_response.status = 200;
+        return_response.message = "Password updated successfully";
+        return_response.data = doc;
+    } catch (error) {
+        return_response.status = 400;
+        return_response.message = String(error);
+    }
+    res.json(return_response);
+}
+
+
 
 
     return {
         addPassword,
         getPassword,
-        deletePassword
+        deletePassword,
+        updatePassword
     }
 
 }
