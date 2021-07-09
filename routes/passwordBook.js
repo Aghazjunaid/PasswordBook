@@ -36,11 +36,27 @@ module.exports = () => {
         res.json(return_response);
     }
 
+    //====================delete Password===============================================
+    async function deletePassword(req,res){
+        return_response = { "status": null, "message": null, "data": {} } 
+       try {
+           const doc = await PasswordBook.findByIdAndDelete({_id:req.params.id})
+           return_response.status = 200;
+           return_response.message = "Password deleted successfully";
+           return_response.data = doc;
+       } catch (error) {
+           return_response.status = 400;
+           return_response.message = String(error);
+       }
+       res.json(return_response);
+   }
+
 
 
     return {
         addPassword,
-        getPassword
+        getPassword,
+        deletePassword
     }
 
 }
