@@ -13,10 +13,11 @@ apiRouter.get('', (req, res) => {
 apiRouter.post('/register', user.registerUser);
 apiRouter.get('/login', user.loginUser);
 
+
 //===========Password Book API==============
 apiRouter.post('/password', passwordBook.addPassword);
 apiRouter.get('/password', passwordBook.getPassword);
-//apiRouter.update('/password', passwordBook.addPassword);
+apiRouter.put('/password/:id', passwordBook.updatePassword);
 apiRouter.delete('/password/:id', passwordBook.deletePassword);
 
 
