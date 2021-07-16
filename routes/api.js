@@ -1,6 +1,7 @@
 var express = require('express'),
 apiRouter = express.Router();
 
+utils = require('../utils')();
 user = require('./user')();
 passwordGenerator = require('./generatePassword')();
 passwordBook = require('./passwordBook')();
@@ -15,10 +16,10 @@ apiRouter.get('/login', user.loginUser);
 
 
 //===========Password Book API==============
-apiRouter.post('/password', passwordBook.addPassword);
-apiRouter.get('/password', passwordBook.getPassword);
-apiRouter.put('/password/:id', passwordBook.updatePassword);
-apiRouter.delete('/password/:id', passwordBook.deletePassword);
+apiRouter.post('/password', utils.authenticateToken, passwordBook.addPassword);
+apiRouter.get('/password', utils.authenticateToken, passwordBook.getPassword);
+apiRouter.put('/password/:id', utils.authenticateToken, passwordBook.updatePassword);
+apiRouter.delete('/password/:id', utils.authenticateToken, passwordBook.deletePassword);
 
 
 //===========Password Generator API=========
