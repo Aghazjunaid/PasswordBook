@@ -23,7 +23,7 @@ module.exports = () => {
                 opt.password = await bcrypt.hashSync(opt.password, salt);
                 const token = jwt.sign({
                     email:opt.email,
-                }, "dfgjgfr76rur",{
+                }, "gsjkah35gsj546b5t",{
                     expiresIn: "24h"
                 });
                 user = new User(opt);
@@ -54,7 +54,7 @@ module.exports = () => {
                     const token = jwt.sign({
                         email:user.email,
                         id:user._id,
-                    }, "dfgjgfr76rur",{
+                    }, "gsjkah35gsj546b5t",{
                         expiresIn: "24h"
                     });
                     user._doc["token"] = token;

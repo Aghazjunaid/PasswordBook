@@ -8,7 +8,7 @@ module.exports = () => {
         var return_response = { "status": null, "message": null, "data": {} } 
         try {
             let opt = req.body;
-            //opt.user = req.user.id;
+            opt.user = req.user.id;
             const passwordBook = new PasswordBook(opt);
             const doc = await passwordBook.save();
             return_response.status = 200;
@@ -25,7 +25,7 @@ module.exports = () => {
     async function getPassword(req,res){
         var return_response = { "status": null, "message": null, "data": {} } 
         try {
-            const doc = await PasswordBook.find({});
+            const doc = await PasswordBook.find({user:req.user.id});
             return_response.status = 200;
             return_response.message = "Success";
             return_response.data = doc;
@@ -35,6 +35,22 @@ module.exports = () => {
         }
         res.json(return_response);
     }
+
+        //====================Get Password By Id==================================================
+        async function getPasswordById(req,res){
+            var return_response = { "status": null, "message": null, "data": {} } 
+            try {
+                const doc = await PasswordBook.find({_id:req.params.id});
+                return_response.status = 200;
+                return_response.message = "Success";
+                return_response.data = doc;
+            } catch (error) {
+                return_response.status = 400;
+                return_response.message = String(error);
+            }
+            res.json(return_response);
+        }
+    
 
     //====================delete Password===============================================
     async function deletePassword(req,res){
@@ -73,6 +89,7 @@ module.exports = () => {
     return {
         addPassword,
         getPassword,
+        getPasswordById,
         deletePassword,
         updatePassword
     }
